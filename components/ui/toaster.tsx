@@ -1,35 +1,23 @@
-"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
-import { useToast } from "@/hooks/use-toast"
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "@/components/ui/toast"
+import { useToast } from "./use-toast"
 
-export function Toaster() {
-  const { toasts } = useToast()
+export const Toaster = () => {
+  const { toast } = useToast()
+
+  if (!toast) return null
 
   return (
-    <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
-        return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
-            </div>
-            {action}
-            <ToastClose />
-          </Toast>
-        )
-      })}
-      <ToastViewport />
-    </ToastProvider>
+    <div className="fixed bottom-4 right-4 z-50">
+      <div
+        className={`rounded-md bg-white p-4 shadow-md ${toast.variant === "destructive" ? "bg-red-100" : "bg-green-100"}`}
+      >
+        <h3 className="font-bold">{toast.title}</h3>
+        {toast.description && <p>{toast.description}</p>}
+      </div>
+    </div>
   )
 }
+

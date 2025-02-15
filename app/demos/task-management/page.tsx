@@ -6,6 +6,7 @@ import { useState } from "react"
 import { TaskBoard } from "./components/task-board"
 import { TaskDialog } from "./components/task-dialog"
 import { Plus } from "lucide-react"
+import type { DropResult } from "@hello-pangea/dnd"
 
 export type Task = {
   id: string
@@ -54,7 +55,7 @@ export default function TaskManagementPage() {
     setTasks((prev) => prev.filter((task) => task.id !== id))
   }
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return
     }

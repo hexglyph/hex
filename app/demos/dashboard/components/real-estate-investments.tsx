@@ -32,7 +32,8 @@ const dividendData = [
 ]
 
 export function RealEstateInvestments() {
-  const [sortColumn, setSortColumn] = useState("value")
+  type FiiDataKey = keyof typeof fiisData[0];
+  const [sortColumn, setSortColumn] = useState<FiiDataKey>("value")
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc")
 
   const sortedData = [...fiisData].sort((a, b) => {
@@ -41,7 +42,7 @@ export function RealEstateInvestments() {
     return 0
   })
 
-  const handleSort = (column: string) => {
+  const handleSort = (column: FiiDataKey) => {
     if (column === sortColumn) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc")
     } else {

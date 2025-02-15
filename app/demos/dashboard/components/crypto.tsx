@@ -7,7 +7,17 @@ import { Button } from "@/components/ui/button"
 import { ArrowUpIcon, ArrowDownIcon } from "lucide-react"
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
-const cryptoData = [
+type CryptoData = {
+  id: number
+  name: string
+  symbol: string
+  price: number
+  change: number
+  amount: number
+  value: number
+}
+
+const cryptoData: CryptoData[] = [
   { id: 1, name: "Bitcoin", symbol: "BTC", price: 30000, change: 2.5, amount: 0.5, value: 15000 },
   { id: 2, name: "Ethereum", symbol: "ETH", price: 2000, change: -1.2, amount: 3, value: 6000 },
   { id: 3, name: "Cardano", symbol: "ADA", price: 0.5, change: 5.7, amount: 1000, value: 500 },
@@ -24,7 +34,7 @@ const historicalData = [
 ]
 
 export function Crypto() {
-  const [sortColumn, setSortColumn] = useState("value")
+  const [sortColumn, setSortColumn] = useState<keyof CryptoData>("value")
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc")
 
   const sortedData = [...cryptoData].sort((a, b) => {
@@ -33,7 +43,7 @@ export function Crypto() {
     return 0
   })
 
-  const handleSort = (column: string) => {
+  const handleSort = (column: keyof CryptoData) => {
     if (column === sortColumn) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc")
     } else {

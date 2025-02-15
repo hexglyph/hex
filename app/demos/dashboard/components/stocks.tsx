@@ -24,7 +24,7 @@ const historicalData = [
 ]
 
 export function Stocks() {
-  const [sortColumn, setSortColumn] = useState("value")
+  const [sortColumn, setSortColumn] = useState<keyof typeof stocksData[0]>("value")
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc")
 
   const sortedData = [...stocksData].sort((a, b) => {
@@ -33,7 +33,7 @@ export function Stocks() {
     return 0
   })
 
-  const handleSort = (column: string) => {
+  const handleSort = (column: keyof typeof stocksData[0]) => {
     if (column === sortColumn) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc")
     } else {
