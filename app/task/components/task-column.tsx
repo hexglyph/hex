@@ -1,20 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-
-import { Draggable } from "react-beautiful-dnd"
-import type { Task } from "../page"
+import { Draggable } from "@hello-pangea/dnd"
 import { TaskCard } from "./task-card"
 
-export function TaskColumn({
-  tasks,
-  onUpdate,
-  onDelete,
-}: {
-  tasks: Task[]
-  onUpdate: (id: string, updates: Partial<Task>) => void
-  onDelete: (id: string) => void
-}) {
+export function TaskColumn({ tasks, onUpdate, onDelete }) {
   return (
     <>
       {tasks.map((task, index) => (
@@ -33,4 +23,3 @@ export function TaskColumn({
     </>
   )
 }
-

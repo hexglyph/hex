@@ -3,9 +3,8 @@
 // @ts-nocheck
 "use client"
 
-import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import { DragDropContext, Droppable } from "@hello-pangea/dnd"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { Task } from "../page"
 import { TaskColumn } from "./task-column"
 
 const columns = [
@@ -23,19 +22,9 @@ const columns = [
   },
 ] as const
 
-export function TaskBoard({
-  tasks,
-  onUpdateTask,
-  onDeleteTask,
-  onDragEnd,
-}: {
-  tasks: Task[]
-  onUpdateTask: (id: string, updates: Partial<Task>) => void
-  onDeleteTask: (id: string) => void
-  onDragEnd: (result: any) => void
-}) {
+export function TaskBoard({ tasks, onUpdateTask, onDeleteTask, onDragEnd }) {
   return (
-    <DragDropContext onDragEnd={onDragEnd as any}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {columns.map((column) => (
           <Card key={column.id}>

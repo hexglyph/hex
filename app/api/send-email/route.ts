@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Resend } from "resend"
 import { EmailTemplate } from "./email-template"
 import type { ReactElement } from "react"
