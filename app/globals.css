@@ -1,8 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
 
-@layer base {
+@layer theme, base, components, utilities;
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer theme {
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -57,4 +60,3 @@
     @apply bg-background text-foreground;
   }
 }
-
