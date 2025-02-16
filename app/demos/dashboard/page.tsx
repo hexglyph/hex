@@ -15,24 +15,16 @@ import { Notifications } from "./components/notifications"
 import { Crypto } from "./components/crypto"
 import { Stocks } from "./components/stocks"
 import { RealEstateInvestments } from "./components/real-estate-investments"
+import NavbarDemo from "@/components/navbar-demo"
 
 export default function DashboardDemo() {
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <header className="border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/" className="text-blue-600 font-bold">
-            HEXGLYPH
-          </Link>
-          <Button asChild variant="outline">
-            <Link href="/#portfolio">Voltar ao Portfolio</Link>
-          </Button>
-        </div>
-      </header>
+      <NavbarDemo />
 
-      <main className="container py-8">
+      <main className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
         <div className="flex-1 space-y-4">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>

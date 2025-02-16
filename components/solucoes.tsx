@@ -98,7 +98,7 @@ const solutions = [
 
 export default function Solucoes() {
   return (
-    <section id="solucoes" className="container py-24 md:py-32">
+    <section id="solucoes" className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
       <div className="mx-auto max-w-[58rem] text-center mb-16">
         <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl text-primary">Nossas Soluções</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">

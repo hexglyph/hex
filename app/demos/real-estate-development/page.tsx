@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import Link from "next/link"
 import { ArrowLeft, Home, Building, Hammer, PaintBucket, Truck, Check } from "lucide-react"
 import Image from "next/image"
+import NavbarDemo from "@/components/navbar-demo"
 
 const constructionStages = [
   {
@@ -38,27 +39,9 @@ export default function RealEstateDevelopmentDemo() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <header className="bg-gray-900 text-white border-b border-gray-700">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/" className="font-bold flex items-center">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            HEXGLYPH Residencial
-          </Link>
-          <nav className="flex items-center space-x-4">
-            <Link href="#sobre" className="hover:underline">
-              Sobre
-            </Link>
-            <Link href="#andamento" className="hover:underline">
-              Andamento
-            </Link>
-            <Link href="#contato" className="hover:underline">
-              Contato
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <NavbarDemo />
 
-      <main className="container py-8">
+      <main className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
         <section className="mb-16">
           <h1 className="text-4xl font-bold text-center mb-4">HEXGLYPH Residencial</h1>
           <p className="text-center text-gray-400 max-w-2xl mx-auto">

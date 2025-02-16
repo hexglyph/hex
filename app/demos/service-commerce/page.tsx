@@ -1,8 +1,14 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowLeft, ShoppingCart, Coffee, Utensils, Gift } from "lucide-react"
 import Image from "next/image"
+import { Badge } from "@/components/ui/badge"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import NavbarDemo from "@/components/navbar-demo"
 
 const products = [
   { id: 1, name: "Café Especial", price: 25.9, image: "/placeholder.svg?height=200&width=200", icon: Coffee },
@@ -11,38 +17,75 @@ const products = [
 ]
 
 export default function ServiceCommerceDemo() {
+  const [cart, setCart] = useState<{ id: number; name: string; price: number; quantity: number }[]>([])
+
+  const addToCart = (product: { id: number; name: string; price: number }) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id)
+      if (existingItem) {
+        return prevCart.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item))
+      }
+      return [...prevCart, { ...product, quantity: 1 }]
+    })
+  }
+
+  const removeFromCart = (productId: number) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId))
+  }
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <header className="bg-gray-900 text-white border-b border-gray-700">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/" className="font-bold flex items-center">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            HEXGLYPH Café
-          </Link>
-          <nav className="flex items-center space-x-4">
-            <Link href="#menu" className="hover:underline">
-              Menu
-            </Link>
-            <Link href="#sobre" className="hover:underline">
-              Sobre
-            </Link>
-            <Link href="#contato" className="hover:underline">
-              Contato
-            </Link>
-            <Button variant="secondary" size="sm">
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              Carrinho (0)
-            </Button>
-          </nav>
-        </div>
-      </header>
+      <NavbarDemo />
 
-      <main className="container py-8">
+      <main className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-8 text-center px-8">
         <section className="mb-16">
           <h1 className="text-4xl font-bold text-center mb-4">Bem-vindo ao HEXGLYPH Café</h1>
           <p className="text-center text-gray-400 max-w-2xl mx-auto">
             Desfrute de uma experiência única com nossos cafés especiais e deliciosos produtos artesanais.
           </p>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="sm" className="relative">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Carrinho
+                {totalItems > 0 && (
+                  <Badge variant="destructive" className="absolute -top-2 -right-2">
+                    {totalItems}
+                  </Badge>
+                )}
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Seu Carrinho</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4 space-y-4">
+                {cart.map((item) => (
+                  <div key={item.id} className="flex justify-between items-center">
+                    <div>
+                      <p className="font-medium">{item.name}</p>
+                      <p className="text-sm text-gray-500">
+                        {item.quantity} x R$ {item.price.toFixed(2)}
+                      </p>
+                    </div>
+                    <Button variant="destructive" size="sm" onClick={() => removeFromCart(item.id)}>
+                      Remover
+                    </Button>
+                  </div>
+                ))}
+                {cart.length === 0 && <p className="text-gray-500">Seu carrinho está vazio.</p>}
+                {cart.length > 0 && (
+                  <div className="border-t pt-4 mt-4">
+                    <p className="font-bold">Total: R$ {totalPrice.toFixed(2)}</p>
+                    <Button className="w-full mt-4">Finalizar Compra</Button>
+                  </div>
+                )}
+              </div>
+            </SheetContent>
+          </Sheet>
         </section>
 
         <section id="menu" className="mb-16">
@@ -67,7 +110,7 @@ export default function ServiceCommerceDemo() {
                   <CardDescription>R$ {product.price.toFixed(2)}</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button className="w-full">
+                  <Button className="w-full" onClick={() => addToCart(product)}>
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     Adicionar ao Carrinho
                   </Button>
@@ -92,33 +135,7 @@ export default function ServiceCommerceDemo() {
             </CardContent>
           </Card>
         </section>
-
-        <section id="contato">
-          <Card className="bg-gray-800 border-gray-700 text-white">
-            <CardHeader>
-              <CardTitle>Entre em Contato</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Estamos sempre felizes em ouvir você! Entre em contato conosco:</p>
-              <ul className="mt-4 space-y-2">
-                <li>Email: contato@hexglyphcafe.com</li>
-                <li>Telefone: (11) 1234-5678</li>
-                <li>Endereço: Rua da Inovação, 123 - São Paulo, SP</li>
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button>Enviar Mensagem</Button>
-            </CardFooter>
-          </Card>
-        </section>
       </main>
-
-      <footer className="bg-gray-900 text-white border-t border-gray-700 py-8">
-        <div className="container text-center">
-          <p>&copy; 2023 HEXGLYPH Café. Todos os direitos reservados.</p>
-        </div>
-      </footer>
     </div>
   )
 }
-

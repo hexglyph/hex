@@ -7,6 +7,7 @@ import { OrderPanel } from "./components/order-panel"
 import { KitchenOrders } from "./components/kitchen-orders"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import NavbarDemo from "@/components/navbar-demo"
 
 export type MenuItem = {
   id: string
@@ -123,18 +124,9 @@ export default function RestaurantPOS() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            HEXGLYPH PDV
-          </Link>
-          <Button asChild variant="outline">
-            <Link href="/#solucoes">Voltar às Soluções</Link>
-          </Button>
-        </div>
-      </header>
+      <NavbarDemo />
 
-      <main className="container py-6">
+      <main className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6">
           <div className="space-y-6">
             <MenuCategories categories={categories} selected={selectedCategory} onSelect={setSelectedCategory} />

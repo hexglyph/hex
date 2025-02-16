@@ -13,6 +13,7 @@ import { Linkedin, Mail, Phone } from "lucide-react"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
+import Navbar from "@/components/navbar"
 
 const formSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -67,14 +68,8 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark">
-      <header className="border-b bg-background">
-        <div className="container py-4">
-          <Link href="/" className="text-primary font-bold">
-            HEXGLYPH
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background dark">
+      <Navbar />
 
       <main className="container py-8 md:py-12">
         <div className="max-w-5xl mx-auto">
@@ -171,7 +166,7 @@ export default function ContactPage() {
                     href="https://linkedin.com/in/danielniebraz"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 hover:text-black transition-colors"
                   >
                     <Linkedin className="h-5 w-5 text-primary mr-4" />
                     <div>
@@ -181,7 +176,7 @@ export default function ContactPage() {
                   </a>
                   <a
                     href="mailto:me@danielniebraz.dev"
-                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 hover:text-black transition-colors"
                   >
                     <Mail className="h-5 w-5 text-primary mr-4" />
                     <div>
@@ -193,7 +188,7 @@ export default function ContactPage() {
                     href="https://wa.me/5511983098578"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex items-center p-4 border rounded-lg hover:bg-gray-100 hover:text-black transition-colors"
                   >
                     <Phone className="h-5 w-5 text-primary mr-4" />
                     <div>
@@ -201,25 +196,6 @@ export default function ContactPage() {
                       <div className="text-sm text-muted-foreground">+55 11 98309-8578</div>
                     </div>
                   </a>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Horário de Atendimento</CardTitle>
-                  <CardDescription>Estamos disponíveis nos seguintes horários:</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Segunda - Sexta</span>
-                      <span>09:00 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Sábado</span>
-                      <span>10:00 - 14:00</span>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </div>

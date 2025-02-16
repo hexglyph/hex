@@ -46,11 +46,11 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="container py-24 md:py-32">
+    <section id="portfolio" className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
       <div className="mx-auto max-w-[58rem] text-center mb-16">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl text-blue-600">Nosso Portfólio</h2>
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl text-blue-600">Projetos</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
-          Explore alguns dos projetos inovadores que desenvolvemos.
+          Explore alguns dos projetos que desenvolvemos.
         </p>
       </div>
       <div className="space-y-20">

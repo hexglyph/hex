@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowLeft, Send } from "lucide-react"
+import NavbarDemo from "@/components/navbar-demo"
 
 export default function AIAssistantDemo() {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([
@@ -32,19 +33,9 @@ export default function AIAssistantDemo() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <header className="border-b border-gray-700 bg-gray-900 sticky top-0 z-50">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/" className="text-primary font-bold flex items-center">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            HEXGLYPH
-          </Link>
-          <Button asChild variant="outline">
-            <Link href="/#solucoes">Voltar às Soluções</Link>
-          </Button>
-        </div>
-      </header>
+      <NavbarDemo />
 
-      <main className="container py-8">
+      <main className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center space-y-8 py-24 text-center md:py-32 px-8">
         <Card className="max-w-2xl mx-auto bg-gray-800 border-gray-700 text-white">
           <CardHeader>
             <CardTitle>Assistente Virtual IA</CardTitle>
