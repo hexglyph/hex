@@ -1,29 +1,22 @@
-import { Inter } from "next/font/google"
-import type React from "react"
 import type { Metadata } from "next"
-import MouseMoveEffect from "@/components/mouse-move-effect"
+import { Inter } from 'next/font/google'
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "HEXGLYPH - Desenvolvimento Web Especializado",
-  description:
-    "HEXGLYPH oferece soluções personalizadas em desenvolvimento de aplicações web, sites e sistemas web para impulsionar o seu negócio.",
+  title: "HexGlyph - AI Solutions for Smart Cities & e-Government",
+  description: "Intelligent AI solutions for Smart Cities and e-Government platforms that drive efficiency, transparency, and innovation.",
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="pt-BR" className="dark">
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
-        <MouseMoveEffect />
-        {children}
-      </body>
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }
-
